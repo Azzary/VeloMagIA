@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bike Predictor 2024</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Bike Number Predictor</h1>
+        <form id="predictForm">
+            <div class="form-group">
+                <h2>General Information</h2>
+                <label><input type="checkbox" id="is_weekend" name="is_weekend"> Weekend</label>
+                <label><input type="checkbox" id="is_holiday" name="is_holiday"> Holiday</label>
+                <label><input type="checkbox" id="is_school_vacation" name="is_school_vacation"> School Vacation</label>
+                <label for="day_of_week">Day of Week: <input type="number" id="day_of_week" name="day_of_week" min="1" max="7" required></label>
+            </div>
+
+            <div class="form-group">
+                <h2>Weather Conditions</h2>
+                <label for="temp">Temperature (°C): <input type="number" id="temp" name="temp" step="0.1" required></label>
+                <label for="max_temp">Max Temperature (°C): <input type="number" id="max_temp" name="max_temp" step="0.1" required></label>
+                <label for="min_temp">Min Temperature (°C): <input type="number" id="min_temp" name="min_temp" step="0.1" required></label>
+                <label for="precipitation">Precipitation (mm): <input type="number" id="precipitation" name="precipitation" step="0.1" required></label>
+                <label for="wind_speed">Wind Speed (m/s): <input type="number" id="wind_speed" name="wind_speed" step="0.1" required></label>
+                <label for="visibility">Visibility (km): <input type="number" id="visibility" name="visibility" step="0.1" required></label>
+            </div>
+
+            <div class="form-group">
+                <h2>Special Conditions</h2>
+                <label><input type="checkbox" id="fog" name="fog"> Fog</label>
+                <label><input type="checkbox" id="rain" name="rain"> Rain</label>
+                <label><input type="checkbox" id="snow" name="snow"> Snow</label>
+                <label><input type="checkbox" id="hail" name="hail"> Hail</label>
+                <label><input type="checkbox" id="thunder" name="thunder"> Thunder</label>
+                <label><input type="checkbox" id="tornado" name="tornado"> Tornado</label>
+            </div>
+
+            <div class="form-group">
+                <h2>Time</h2>
+                <label for="hour">Hour: <input type="number" id="hour" name="hour" min="0" max="23" required></label>
+                <label for="minute">Minute: <input type="number" id="minute" name="minute" min="0" max="59" required></label>
+            </div>
+
+            <button type="submit">Predict</button>
+        </form>
+        <div id="result" class="hidden"></div>
+    </div>
+</body>
+</html>
